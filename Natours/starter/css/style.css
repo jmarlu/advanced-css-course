@@ -19,6 +19,9 @@ Main Secondary color (2)
 .color-secondary-2-3 { color: #908223 }
 .color-secondary-2-4 { color: #776911 }  */
 
+/* quita los bordes por defecto que tienes el link */
+a:active, a:active * { outline: none !important; -moz-outline-style: none !important; }
+a:focus, a:focus * { outline: none !important; -moz-outline-style: none !important; }
 
 *{
     margin: 0;
@@ -60,23 +63,119 @@ height: 35px;
     position: absolute;
     top:40%;
     left:50%;
-    background-color: red;
+    text-align: center;
     transform: translate(-50%,-50%);
 }
 .heading-primary{
 color:#fff;
 text-transform: uppercase;
-
+backface-visibility: hidden;
+margin-bottom: 60px;
 }
 .heading-primary-main{
     display: block;
     font-size: 60px;
     font-weight: 400;
     letter-spacing: 35px;
+    animation: moveInLeft 1s ease-out;
 }
 .heading-primary-sub{
     display: block;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 17px;
+    animation: moveInRight 1s ease-out;
+    
+}
+@keyframes moveInLeft{
+0%{
+opacity: 0;
+transform: translateX(-100px);
+}
+80%{
+    transform: translateX(10px);
+    
+}
+
+100%{
+opacity: 1;
+transform: translate(0);
+}
+}
+
+@keyframes moveInRight{
+    0%{
+    opacity: 0;
+    transform: translateX(100px);
+    }
+    80%{
+        transform: translateX(-10px);
+        
+    }
+    
+    100%{
+    opacity: 1;
+    transform: translate(0);
+    }
+    }
+    @keyframes moveInBottom{
+        0%{
+        opacity: 0;
+        transform: translateY(30px);
+        }
+        100%{
+        opacity: 1;
+        transform: translate(0);
+        }
+        }
+.btn:link, .btn:visited{
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 15px 40px;
+        border-radius: 100px;
+        transition:all 0.5s;
+        display: inline-block;
+        position:relative;
+
+    }
+.btn-white{
+    background-color: #fff;
+    color:#777;
+}
+
+.btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+
+.btn:active{
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0,0,0,.2);    
+}
+
+.btn::after{
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: -1;
+    transition: all .4s;
+    opacity: 1;
+    
+}
+.btn-white::after{
+    background-color:#fff;
+}
+
+.btn:hover::after{
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+.btn-animation{
+    animation: moveInBottom .5s ease-in-out .75s;
+    animation-fill-mode: backwards;
 }
